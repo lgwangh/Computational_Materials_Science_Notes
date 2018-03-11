@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 计算材料学o(\*￣▽￣\*)o
-=====================
+=======================
 
 .. toctree::
    :maxdepth: 1

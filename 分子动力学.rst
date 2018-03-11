@@ -11,7 +11,7 @@
 	&系统动能 K=\sum_{i=1}^N\frac{1}{2}m_i(x_i'(t))^2\\
 	&系统势能 U=U(x^{3N}(t))
 
-理想的列纳德琼斯势： :math:`V(r)=4\varepsilon[(\frac{\sigma}{r})^12-(\frac{\sigma}{r})^6]` ，是一种短程力 
+理想的列纳德琼斯势： :math:`V(r)=4\varepsilon[(\frac{\sigma}{r})^{12}-(\frac{\sigma}{r})^6]` ，是一种短程力 
 
 原子的德拜频率在 :math:`10^{-12}s` 量级。 
 
@@ -25,7 +25,7 @@
 
 	\left\{
 	\begin{align}
-	if &\vec{f}_i\cdot\dot{\vec{x}}_i>0 \quad \dot{\vec{x}}_i(t)=\dot{\vec{x}}_i\\
+	\mathrm{if} &\vec{f}_i\cdot\dot{\vec{x}}_i>0 \quad \dot{\vec{x}}_i(t)=\dot{\vec{x}}_i\\
 	&\vec{f}_i\cdot\dot{\vec{x}}_i<0 \quad \dot{\vec{x}}_i(t)=0
 	\end{align}
 	\right.
