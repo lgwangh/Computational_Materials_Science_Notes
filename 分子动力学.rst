@@ -3,7 +3,7 @@
 
 **定义**\ ：对一个包含N个粒子的体系，给定其\ *初始作用势*\ 、\ *初始条件*\ 和\ *边界条件*\ ，通过对牛顿运动方程做\ *数值积分*\ ，从而得到粒子\ *运动轨迹*\ 的方法。
 
-体系的内能
+体系的内能 
 
 .. math::
 
@@ -30,3 +30,21 @@
 	\end{align}
 	\right.
 
+系统变量
+--------
+
+.. math::
+
+	&温度：\langle E_k\rangle_{NVT}=\sum_{i=1}^N\frac{m_i v_i^2}{2}=\frac{k_B T}{2}N_f\\
+	&压力：PV=N_k_BT+\frac 1 D\left\langle\sum_{i=1}^N\vec{R}_i\cdot\vec{F}_i\right\rangle
+
+
+L-J体系中仅仅考虑双体相互作用，而嵌入原子方法 EAM 中考虑了所有原子的相互作用 
+
+.. math::
+
+	&U(x^{3N})=\frac 1 2 \sum_{j\ne i}^N V_{ji}(r_{ji})+\sum_{i=1}^N F_i(\rho_i)\\
+	&其中\rho_i=\sum_{j\ne i}^N f_j(r_{ij})\\
+	&F_i(\rho_i)可用任何平滑函数，常用F_i(\rho_i)=\sqrt{\rho_i}
+
+EAM 一般对金属适用
