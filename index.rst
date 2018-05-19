@@ -12,3 +12,4 @@
 
    分子动力学.rst
    LAMMPS教程.rst
+   有限元方法.rst
