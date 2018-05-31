@@ -107,6 +107,11 @@
   0 & \frac{\partial}{\partial y}\\
   \frac{\partial}{\partial y} & \frac{\partial}{\partial x} 
   \end{pmatrix}\pmb{N}
+  =\frac{1}{2A}\begin{pmatrix}
+  b_i & 0 & b_j & 0 & b_m & 0\\
+  0 & c_i & 0 & c_j & 0 & c_m\\
+  c_i & b_i & c_j & b_j & c_m & b_m
+  \end{pmatrix}
 
 弹性矩阵 
 
@@ -232,4 +237,46 @@
 温度场
 ------
 
-略
+以平面问题为例，某点坐标 :math:`\vec{r}=(1~x~y)^T`，温度为 :math:`T` 。物体热导率为 :math:`k` ，边界条件为确定的换热系数 :math:`\alpha` 和环境温度 :math:`T_\alpha` ，换热方程 :math:`k\frac{\partial T}{\partial n}=\alpha(T_\alpha-T)`。
+
+离散化
+++++++
+
+像之前一样划分单元，注意三节点对边的长度分别记为 :math:`s_i,s_j,s_k` 。形函数定义也与之前相同，节点温度 :math:`\vec{T}^e=(T_i~T_j~T_k)^T` ，则某点温度 :math:`T=\pmb{N}\vec{T}^e` 。
+
+温度刚度矩阵
+++++++++++++
+
+假设 :math:`jk` 边位于边界，则单元温度刚度矩阵由内部单元温度阵和边界影响两部分构成 :math:`\bar{\pmb{H}}^e=\pmb{H}^e+\pmb{H}^{ie}` 。（若单元位于内部，则无第二项；若有两条边位于边界，则有两个第二项）
+
+.. math:: 
+
+  \pmb{H}^e=\frac{k}{4A}\begin{pmatrix}
+  b_i^2+c_i^2 & b_i b_j+c_i c_j & b_i b_k+c_i c_k\\
+  b_i b_j+c_i c_j & b_j^2+c_j^2 & b_j b_k+c_j c_k\\
+  b_i b_k+c_i c_k & b_j b_k+c_j c_k & b_k^2+c_k^2
+  \end{pmatrix},
+  \pmb{H}^{ie}=\begin{pmatrix}
+  0 & 0 & 0\\
+  0 & \frac{\alpha s_i}{3} & \frac{\alpha s_i}{6}\\
+  0 & \frac{\alpha s_i}{6} & \frac{\alpha s_i}{3}
+  \end{pmatrix}
+
+边界条件体现在热流向量上，单元热流向量仅受边界影响，也就是说，对于内部单元， :math:`\vec{p}^e=\vec{0}` ，而 
+
+.. math:: \vec{p}^{ie}=\begin{pmatrix}0\\\frac{\alpha s_i}{2}T_\alpha\\\frac{\alpha s_i}{2}T_\alpha\end{pmatrix} 
+
+整体温度刚度矩阵 :math:`\pmb{N}` 的获取与之前相同，整体热流向量 :math:`\vec{p}` 与之类似，此外还要算出整体形函数 :math:`\pmb{N}` 。
+
+时间离散
+++++++++
+
+采用前向差分法，可得从 :math:`t-\Delta t` 到 :math:`t` 的递推方程： 
+
+.. math:: \left(\pmb{H}+\frac{\pmb{N}}{\Delta t}\right)\vec{T}_t=\vec{p}_t+\frac{\pmb{N}}{\Delta t}\vec{T}_{t-\Delta t}
+
+其他求解条件： 
+
+- 对于稳态问题，无需考虑时间，方程简化为 :math:`\pmb{H}\vec{T}=\vec{p}` 
+- 对于瞬态问题，有初值，即物体起始温度场 :math:`\vec{T}_0` ，则可通过方程递推地解出任意 :math:`\vec{T}_t` 
+- 可以采用其他差分方法，提高求解精度
