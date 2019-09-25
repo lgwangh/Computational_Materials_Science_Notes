@@ -52,7 +52,7 @@ EAM 一般对金属适用，对表面晶面等尤为合适。
 .. math::
 
 	&温度：\langle E_k\rangle_{NVT}=\sum_{i=1}^N\frac{m_i v_i^2}{2}=\frac{k_B T}{2}N_f\\
-	&压力：PV=N_k_BT+\frac 1 D\langle\sum_{i=1}^N\vec{R}_i\cdot\vec{F}_i\rangle
+	&压力：PV=Nk_BT+\frac 1 D\langle\sum_{i=1}^N\vec{R}_i\cdot\vec{F}_i\rangle
 
 
 
